@@ -102,4 +102,4 @@ tablet2 <- tablet2[, c(2, 3, 1, 4:nc)]
 ## create a file for the new data set
 
 setwd("../")
-write.table(tablet2, file = "course4dataset.txt", sep = " ", row.name = FALSE)
+write.table(tablet2, file = "course3dataset.txt", sep = " ", row.name = FALSE)
