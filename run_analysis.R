@@ -98,8 +98,15 @@ tablet2 <- aggregate(tablet[, c(2, 3, 6:71)], list(tablet$subact), mean)
 names(tablet2)[1] <- "SubjectActivity"
 nc <- ncol(tablet2)
 tablet2 <- tablet2[, c(2, 3, 1, 4:nc)]
-
+names(tablet2) <- gsub("-", "", names(tablet2))
+names(tablet2) <- gsub("()", "", names(tablet2))
+names(tablet2) <- gsub("mean", "Mean", names(tablet2))
+names(tablet2) <- gsub("std", "StandardDeviation", names(tablet2))
+names(tablet2) <- gsub("[...]", "", names(tablet2))
+names(tablet2) <- gsub("[..]", "", names(tablet2))
+names(tablet2) <- sub("[.]", "", names(tablet2))
 ## create a file for the new data set
 
 setwd("../")
+write.table(names(tablet2), file = "variables.txt", sep = " ", row.name = FALSE)
 write.table(tablet2, file = "course3dataset.txt", sep = " ", row.name = FALSE)
